@@ -19,10 +19,10 @@ Authors:
 West Virginia University Applied Space Exploration Laboratory
 john.o.woods@gmail.com
 
-2) Davide Grande 
-University College London (UCL)
-davide.grande.19@ucl.ac.uk
+2) Davide Grande  
+University College London (UCL)  
+davide.grande.19@ucl.ac.uk  
 
-3) Stefano Farì
-German Aerospace Center (DLR)
-stefano.fari@dlr.de
+3) Stefano Farì  
+German Aerospace Center (DLR)  
+stefano.fari@dlr.de  
