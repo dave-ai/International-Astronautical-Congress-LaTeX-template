@@ -15,9 +15,9 @@ distributed under the BSD 2-clause license. In other words, don't remove
 the attribution or this README.
 
 Authors: 
-1) John O. Woods, Ph.D. (original author)
-West Virginia University Applied Space Exploration Laboratory
-john.o.woods@gmail.com
+1) John O. Woods, Ph.D. (original author)  
+West Virginia University Applied Space Exploration Laboratory  
+john.o.woods@gmail.com  
 
 2) Davide Grande  
 University College London (UCL)  
