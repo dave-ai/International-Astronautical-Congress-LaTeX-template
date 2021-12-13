@@ -7,7 +7,7 @@ The template has been updated to the latest IAC guidelines, to include, among ot
 3. ORCID reference. 
 
 This template was used to submit the following paper to the IAC Conference 2021, Dubai:  
-S. Farì and D. Grande, “Vector field-based guidance development for launch vehicle re-entry via actuated parafoil”, 
+- S. Farì and D. Grande, “Vector field-based guidance development for launch vehicle re-entry via actuated parafoil”, 
 IAC Conference, Dubai, 2021. 
 
 Feel free to use or modify this template, but please consider it to be
