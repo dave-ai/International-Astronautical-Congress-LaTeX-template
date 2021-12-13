@@ -2,11 +2,13 @@ This template results as a branch of the GitHub repository:
 <https://github.com/debittner/iac_latex_template>
   
 The template has been updated to the latest IAC guidelines, to include, among others:   
-1. a bibliography style example
-2. page numbering 
+1. font, spacing and general formatting;
+2. appropriate page numberings;
 3. ORCID reference. 
 
-This template was used to submit the following paper to the IAC Conference 2021, Dubai:  
+The template is based on: <https://www.iafastro.org/assets/files/iac-2021-manuscript-template.doc>.
+
+It was used to submit the following paper to the IAC Conference 2021, Dubai:  
 - S. Farì and D. Grande, “Vector field-based guidance development for launch vehicle re-entry via actuated parafoil”, 
 IAC Conference, Dubai, 2021. 
 

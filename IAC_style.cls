@@ -1,5 +1,20 @@
-\NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{iac_class}[2021/09/01 International Astronautical Congress conference paper LaTeX class]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% IAC_style.cls, v1.0, 2021-10-01
+% Developed by
+%     Davide Grande (email)
+%     Stefano Farì (Github: extraser)
+%
+% This class file enables authors to prepare papers
+% according to the manuscript style requested by the
+% International Astronautical Federation (IAF) for
+% submissions to the International Astronautical
+% Congress (IAC)
+%
+% This file is based on:
+% iaf-iac.cls, v0.0 developed by Matt Vernacchia
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\NeedsTeXFormat{LaTeX2e}
+\ProvidesClass{IAC_style}[2021 International Astronautical Congress conference paper LaTeX class]
 
 \LoadClass[twocolumn,letter paper,10pt]{article}
 \setlength\parskip{0pt} % no spacing at double return carriage
@@ -21,6 +36,7 @@
 \RequirePackage{etoolbox}
 \RequirePackage{alphalph}
 \RequirePackage{float}
+\RequirePackage{orcidlink}
 
 \renewcommand{\headrulewidth}{0pt}
 
@@ -38,15 +54,8 @@
 \captionsetup[figure]{name=Fig.,format=hang,indention=-20pt}
 %\captionsetup[table]{format=hang,indention=-24pt}
 
-% Sections spacing
-\titlespacing{\section}{0pt}{15pt}{1pt}
-\titlespacing{\subsection}{0pt}{15pt}{1pt}
-\titlespacing{\subsubsection}{0pt}{15pt}{1pt}
-
 % Sections style
-\titleformat{\section}{\bfseries}{\arabic{section}. }{0.5em}{{#1}} % Davide: modified syle & numbering  
-\titleformat{\subsection}{\itshape}{\arabic{section}.\arabic{subsection}}{0.5em}{{#1}} % Davide: modified syle & numbering
-\titleformat{\subsubsection}{\itshape}{\arabic{section}.\arabic{subsection}.\arabic{subsubsection}}{0.5em}{{#1}} % Davide: modified syle & numbering
+%See end of file.%
 
 %-----------------------------------------------------
 %% ------------ IAC CUSTOM PART ----------------------
@@ -54,9 +63,27 @@
 \newcommand{\IACauthor}[3]{%
 	\stepcounter{authcount}%
 	\csdef{iac@author\theauthcount}{#1}%
-	\csdef{iac@affiliation\theauthcount}{#2}%
-	\csdef{iac@iscorrespondingauthor\theauthcount}{#3}}%
-%
+	\csdef{iac@affiliationidx\theauthcount}{#2}%
+	\csdef{iac@iscorrespondingauthor\theauthcount}{#3}%
+	}%
+
+\newcounter{affiliationcount}
+\newcommand{\IACauthoraffiliation}[1]{%
+	\stepcounter{affiliationcount}%
+	\csdef{iac@affiliation\theaffiliationcount}{#1}%
+	}%
+
+\setlength\parindent{12pt}
+\RequirePackage[]{caption}
+\captionsetup[figure]{name=Fig.,format=hang,indention=-20pt}
+\captionsetup[table]{format=hang,indention=-24pt}
+
+\titlespacing{\section}{0pt}{*3}{*1.5}
+\titlespacing{\subsection}{0pt}{*2.5}{*0.5}
+\titlespacing{\subsubsection}{12pt}{*2}{*0.5}
+\titleformat{\section}{\centering\normalfont}{\Roman{section}. }{0.5em}{\uline{\textsc{#1}}}
+\titleformat{\subsection}{\normalfont}{\Roman{section}.\roman{subsection}}{0.5em}{\uline{#1}}
+\titleformat{\subsubsection}{\normalfont}{}{0pt}{\uline{#1}}
 
 \renewcommand{\abstract}[1]{\def\iac@abstract{#1}}
 \newcommand*{\IACpaperyear}[1]{\def\iac@paperyear{#1}}\IACpaperyear{}
@@ -66,10 +93,12 @@
 \newcommand*{\IAClocation}[1]{\def\iac@location{#1}}\IAClocation{}
 \newcommand*{\IACdate}[1]{\def\iac@date{#1}}\IACdate{}
 
-\newcommand{\IACcopyrightA}[1]{\def\iac@copyright{Copyright \copyright\ \iac@paperyear\ by the International Astronautical Federation. All rights reserved.}}
-\newcommand{\IACcopyrightB}[1]{\def\iac@copyright{Copyright \copyright\ \iac@paperyear\ by #1. Published by the IAF, with permission and released to the IAF to publish in all forms.}}
+
+\newcommand{\IACcopyrightA}[1]{\def\iac@copyright{Copyright \copyright\iac@paperyear\ by the International Astronautical Federation. All rights reserved.}}
+\newcommand{\IACcopyrightB}[1]{\def\iac@copyright{Copyright \copyright\iac@paperyear\ by #1. Published by the IAF, with permission and released to the IAF to publish in all forms.}}
 \newcommand{\IACcopyrightC}[1]{\def\iac@copyright{#1}} 
 \newcommand\iac@makecopyright{{\iac@copyright}}
+
 
 \def\@maketitle{%
   \newpage
@@ -85,19 +114,18 @@
       \whileboolexpr
       { test {\ifnumcomp{\value{authnum}}{<}{\theauthcount}} }%
         {\stepcounter{authnum}%
-      	\normalsize\textbf{\csuse{iac@author\theauthnum}}\textsuperscript{\@alph{\theauthnum}}%
+      	\normalsize\textbf{\csuse{iac@author\theauthnum}}\textsuperscript{\@alph{\csuse{iac@affiliationidx\theauthnum}}}%
       	{\ifnumcomp{\csuse{iac@iscorrespondingauthor\theauthnum}}{=}{1}{*}{}}%
-      	{\ifnumcomp{\value{authnum}}{=}{\theauthcount}{}{,\ }}%\par%
-		%\normalsize\csuse{iac@affiliation\theauthnum}\par%
-		%\vskip 1.5ex%
+      	{\ifnumcomp{\value{authnum}}{=}{\theauthcount}{}{,\ }}%
 	    }%
     }%
   \end{center}%
-    \setcounter{authnum}{0}
+  \newcounter{affnum}
+    \setcounter{affnum}{0}
     \whileboolexpr
-      { test {\ifnumcomp{\value{authnum}}{<}{\theauthcount}} }%
-      {\stepcounter{authnum}%
-		\textsuperscript{\@alph{\theauthnum}} \normalsize\textit{\csuse{iac@affiliation\theauthnum}}\par%
+      { test {\ifnumcomp{\value{affnum}}{<}{\theaffiliationcount}} }%
+      {\stepcounter{affnum}%
+		\textsuperscript{\@alph{\csuse{iac@affiliationidx\theaffnum}}} \normalsize\textit{\csuse{iac@affiliation\theaffnum}}\par%
 		\vskip 1.5ex%
 	  }
     \setcounter{authnum}{0}
@@ -105,6 +133,7 @@
       { test {\ifnumcomp{\value{authnum}}{<}{\theauthcount}} }%
       {\stepcounter{authnum}%
 		\ifnumcomp{\csuse{iac@iscorrespondingauthor\theauthnum}}{=}{1}{* Corresponding author}{}\par%
+		 \setcounter{authnum}{99}% exit the loop by invalidating the bool condition
 		%\vskip 1.5ex%
 	  }
 %
@@ -113,6 +142,7 @@
   \end{center}
   \indent\iac@abstract\par%
   \vskip 4.5ex%
+  
   }%
 
 % Set header and footer
@@ -126,6 +156,15 @@
 \setlength{\footskip}{40pt}
 \rfoot{Page \thepage\ of \pageref{LastPage}}
 \lfoot{\iac@papernumber}
-  
-  
-  
+
+
+%-----------------------------------------------------
+%% ------------ SECTIONS STYLE
+% Sections spacing
+\titlespacing{\section}{0pt}{15pt}{1pt}%
+\titlespacing{\subsection}{0pt}{15pt}{1pt}%
+\titlespacing{\subsubsection}{0pt}{15pt}{1pt}%
+
+\titleformat{\section}{\bfseries}{\arabic{section}. }{0.5em}{{#1}}%
+\titleformat{\subsection}{\itshape}{\arabic{section}.\arabic{subsection}}{0.5em}{{#1}}%
+\titleformat{\subsubsection}{\itshape}{\arabic{section}.\arabic{subsection}.\arabic{subsubsection}}{0.5em}{{#1}}%
