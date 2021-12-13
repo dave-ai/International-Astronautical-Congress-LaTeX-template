@@ -1,3 +1,8 @@
+# International Astronautical Congress LaTeX template
+## Change logs
+- 2021/12/13 First release
+
+## General info
 This template results as a branch of the GitHub repository:
 <https://github.com/debittner/iac_latex_template>
   
