@@ -35,6 +35,6 @@ john.o.woods@gmail.com
 University College London (UCL)  
 davide.grande.19@ucl.ac.uk  
 
-3) Stefano Farì (current maintainer)
-German Aerospace Center (DLR)
+3) Stefano Farì (current maintainer)  
+German Aerospace Center (DLR)  
 stefano.fari@dlr.de
