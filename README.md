@@ -3,7 +3,6 @@
 
 Last updated: 03-May-2024
 
-
 ## Change logs
 - 2021/12/13 First release
 - 2024/05/03 Updated example file
@@ -17,9 +16,9 @@ The template has been updated to the latest IAC guidelines, to include, among ot
 2. appropriate page numberings;
 3. ORCID reference. 
 
-The template is based on: <https://www.iafastro.org/assets/files/events/iac/2024/IAC%202024%20Manuscript_Template.doc>.
+The template is based on the [IAC 2024 template](https://www.iafastro.org/assets/files/events/iac/2024/IAC%202024%20Manuscript_Template.doc).
 
-It was used to submit the following paper to the IAC Conference 2021, Dubai:  
+It was used to submit the following papers:  
 - S. Farì and D. Grande, “Vector field-based guidance development for launch vehicle re-entry via actuated parafoil”, Dubai, UAE, 2021.
 - S. Farì, ``The Vertical Landing Vehicles Library (VLVLib): a Modelica-based approach to high-fidelity simulation and verification of GNC systems for reusable rockets'', Paris, France, 2022.
 
@@ -37,5 +36,5 @@ University College London (UCL)
 davide.grande.19@ucl.ac.uk  
 
 3) Stefano Farì (current maintainer)
-German Aerospace Center (DLR)  
-stefano.fari@dlr.de  
+German Aerospace Center (DLR)
+stefano.fari@dlr.de
