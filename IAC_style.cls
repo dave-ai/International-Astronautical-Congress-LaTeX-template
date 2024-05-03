@@ -2,7 +2,7 @@
 % IAC_style.cls, v1.0, 2021-10-01
 % Developed by
 %     Davide Grande (email)
-%     Stefano Farì (Github: extraser)
+%     Stefano Farì (Github: stefanofari)
 %
 % This class file enables authors to prepare papers
 % according to the manuscript style requested by the
@@ -14,17 +14,15 @@
 % iaf-iac.cls, v0.0 developed by Matt Vernacchia
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{IAC_style}[2021 International Astronautical Congress conference paper LaTeX class]
+\ProvidesClass{IAC_style}[International Astronautical Congress conference paper LaTeX class]
 
 \LoadClass[twocolumn,letter paper,10pt]{article}
 \setlength\parskip{0pt} % no spacing at double return carriage
 
 %-----------------------------------------------------
 %% ------------ PACKAGES -----------------------------
-%\RequirePackage{amsmath}
-%\RequirePackage{amssymb}
-%\RequirePackage{amstext}
-%\RequirePackage{amsfonts}
+\RequirePackage[colorlinks]{hyperref}
+\RequirePackage{url}
 \RequirePackage{graphicx}
 %\RequirePackage{array}
 \RequirePackage{booktabs}
@@ -37,6 +35,10 @@
 \RequirePackage{alphalph}
 \RequirePackage{float}
 \RequirePackage{orcidlink}
+\RequirePackage{tabularx}
+\RequirePackage{booktabs} % For \toprule etc. in tables
+\RequirePackage[titletoc,toc,title]{appendix}  % For managing appendices
+\RequirePackage{ulem}
 
 \renewcommand{\headrulewidth}{0pt}
 
@@ -57,8 +59,18 @@
 % Sections style
 %See end of file.%
 
+
+\hypersetup{
+    colorlinks=false,    % no colored links
+    pdfborder={0 0 0}    % no borders around links
+}
+
+
 %-----------------------------------------------------
 %% ------------ IAC CUSTOM PART ----------------------
+
+\newcommand{\authormail}[1]{\href{mailto:#1}{\uline{#1}}}
+
 \newcounter{authcount}
 \newcommand{\IACauthor}[3]{%
 	\stepcounter{authcount}%
@@ -168,3 +180,48 @@
 \titleformat{\section}{\bfseries}{\arabic{section}. }{0.5em}{{#1}}%
 \titleformat{\subsection}{\itshape}{\arabic{section}.\arabic{subsection}}{0.5em}{{#1}}%
 \titleformat{\subsubsection}{\itshape}{\arabic{section}.\arabic{subsection}.\arabic{subsubsection}}{0.5em}{{#1}}%
+
+% Appendix handling setup
+% Customizing the appendix title format
+\RequirePackage{titlesec}
+% Define hooks to customize the formatting within the appendices
+\AtBeginEnvironment{appendices}{%
+    \titleformat{\section}
+      {\normalfont\bfseries}
+      {Appendix \thesection.}
+      {1em}
+      {#1}
+    \titlespacing*{\section}{0pt}{5.5ex plus 1ex minus .2ex}{3.3ex plus .2ex}
+    \setcounter{section}{0}%
+    \setcounter{subsection}{0}%
+    \setcounter{subsubsection}{0}%
+    \setcounter{figure}{0}
+    \setcounter{table}{0}
+    \setcounter{equation}{0}
+    \renewcommand{\thefigure}{A\arabic{figure}}
+    \renewcommand{\thetable}{A\arabic{table}}
+    \renewcommand{\theequation}{A\arabic{equation}}
+}
+
+\AtEndEnvironment{appendices}{%
+    % Reset the title format to the default or document-wide setting
+    \titleformat{\section}
+      {\normalfont\Large\bfseries}
+      {\thesection}
+      {1em}
+      {#1}
+}
+
+
+% Biblio handling
+\bibliographystyle{unsrt} % or any other style suitable for your document
+
+\let\oldthebibliography\thebibliography
+\renewcommand{\thebibliography}[1]{%
+  \oldthebibliography{#1}%
+  \vspace{6pt}
+  \setlength{\itemsep}{0pt}%
+  \urlstyle{same}
+  \renewcommand{\UrlFont}{\color{blue}} % Underline and color URLs
+}
+
