@@ -1,7 +1,7 @@
 # International Astronautical Congress LaTeX template
 ![Static Badge](https://img.shields.io/badge/Status-Active-brightgreen)
 
-Last updated: 03-May-2024
+Last updated: 21-July-2025
 
 ## Change logs
 - 2021/12/13 First release
