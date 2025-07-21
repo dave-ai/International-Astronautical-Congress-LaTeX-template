@@ -144,8 +144,9 @@
     \whileboolexpr
       { test {\ifnumcomp{\value{authnum}}{<}{\theauthcount}} }%
       {\stepcounter{authnum}%
-		\ifnumcomp{\csuse{iac@iscorrespondingauthor\theauthnum}}{=}{1}{* Corresponding author}{}\par%
-		 \setcounter{authnum}{99}% exit the loop by invalidating the bool condition
+		\ifnumcomp{\csuse{iac@iscorrespondingauthor\theauthnum}}{=}{1}{
+      * Corresponding author
+      \setcounter{authnum}{99}}{}\par% % exit the loop by invalidating the bool condition
 		%\vskip 1.5ex%
 	  }
 %
