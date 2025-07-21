@@ -6,6 +6,7 @@ Last updated: 03-May-2024
 ## Change logs
 - 2021/12/13 First release
 - 2024/05/03 Updated example file
+- 2025/07/21 Fixed bug when switching the corresponding author
 
 ## General info
 This template results as a branch of the GitHub repository:
@@ -20,7 +21,7 @@ The template is based on the [IAC 2024 template](https://www.iafastro.org/assets
 
 It was used to submit the following papers:  
 - S. Farì and D. Grande, “Vector field-based guidance development for launch vehicle re-entry via actuated parafoil”, Dubai, UAE, 2021.
-- S. Farì, ``The Vertical Landing Vehicles Library (VLVLib): a Modelica-based approach to high-fidelity simulation and verification of GNC systems for reusable rockets'', Paris, France, 2022.
+- S. Farì, "The Vertical Landing Vehicles Library (VLVLib): a Modelica-based approach to high-fidelity simulation and verification of GNC systems for reusable rockets", Paris, France, 2022.
 
 Feel free to use or modify this template, but please consider it to be
 distributed under the BSD 2-clause license. In other words, don't remove
