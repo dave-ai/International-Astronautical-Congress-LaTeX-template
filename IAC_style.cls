@@ -136,8 +136,9 @@
     \whileboolexpr
       { test {\ifnumcomp{\value{affnum}}{<}{\theaffiliationcount}} }%
       {\stepcounter{affnum}%
-    \textsuperscript{\@alph{\csuse{iac@affiliationidx\theaffnum}}} \normalsize\textit{\csuse{iac@affiliation\theaffnum}}\par%
-    \vskip 1.5ex%
+    	\textsuperscript{\@alph{\value{affnum}}} 
+    	\normalsize\textit{\csuse{iac@affiliation\theaffnum}}\par%
+    	\vskip 1.5ex%
     }
     \setcounter{authnum}{0}
     \whileboolexpr
