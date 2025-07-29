@@ -25,7 +25,6 @@
 \RequirePackage{url}
 \RequirePackage{graphicx}
 %\RequirePackage{array}
-\RequirePackage{booktabs}
 \RequirePackage{cite}
 \RequirePackage{lastpage}
 \RequirePackage{fancyhdr}
@@ -39,6 +38,7 @@
 \RequirePackage{booktabs} % For \toprule etc. in tables
 \RequirePackage[titletoc,toc,title]{appendix}  % For managing appendices
 \RequirePackage{ulem}
+\RequirePackage[super]{nth}
 
 \renewcommand{\headrulewidth}{0pt}
 
@@ -73,20 +73,19 @@
 
 \newcounter{authcount}
 \newcommand{\IACauthor}[3]{%
-	\stepcounter{authcount}%
-	\csdef{iac@author\theauthcount}{#1}%
-	\csdef{iac@affiliationidx\theauthcount}{#2}%
-	\csdef{iac@iscorrespondingauthor\theauthcount}{#3}%
-	}%
+  \stepcounter{authcount}%
+  \csdef{iac@author\theauthcount}{#1}%
+  \csdef{iac@affiliationidx\theauthcount}{#2}%
+  \csdef{iac@iscorrespondingauthor\theauthcount}{#3}%
+  }%
 
 \newcounter{affiliationcount}
 \newcommand{\IACauthoraffiliation}[1]{%
-	\stepcounter{affiliationcount}%
-	\csdef{iac@affiliation\theaffiliationcount}{#1}%
-	}%
+  \stepcounter{affiliationcount}%
+  \csdef{iac@affiliation\theaffiliationcount}{#1}%
+  }%
 
 \setlength\parindent{12pt}
-\RequirePackage[]{caption}
 \captionsetup[figure]{name=Fig.,format=hang,indention=-20pt}
 \captionsetup[table]{format=hang,indention=-24pt}
 
@@ -126,17 +125,17 @@
       \whileboolexpr
       { test {\ifnumcomp{\value{authnum}}{<}{\theauthcount}} }%
         {\stepcounter{authnum}%
-      	\normalsize\textbf{\csuse{iac@author\theauthnum}}\textsuperscript{\@alph{\csuse{iac@affiliationidx\theauthnum}}}%
-      	{\ifnumcomp{\csuse{iac@iscorrespondingauthor\theauthnum}}{=}{1}{*}{}}%
-      	{\ifnumcomp{\value{authnum}}{=}{\theauthcount}{}{,\ }}%
-	    }%
+        \normalsize\textbf{\csuse{iac@author\theauthnum}}\textsuperscript{\@alph{\csuse{iac@affiliationidx\theauthnum}}}%
+        {\ifnumcomp{\csuse{iac@iscorrespondingauthor\theauthnum}}{=}{1}{*}{}}%
+        {\ifnumcomp{\value{authnum}}{=}{\theauthcount}{}{,\ }}%
+      }%
     }%
   \end{center}%
   \newcounter{affnum}
     \setcounter{affnum}{0}
     \whileboolexpr
-    { test {\ifnumcomp{\value{affnum}}{<}{\theaffiliationcount}} }%
-    {\stepcounter{affnum}%
+      { test {\ifnumcomp{\value{affnum}}{<}{\theaffiliationcount}} }%
+      {\stepcounter{affnum}%
     	\textsuperscript{\@alph{\value{affnum}}} 
     	\normalsize\textit{\csuse{iac@affiliation\theaffnum}}\par%
     	\vskip 1.5ex%
@@ -145,11 +144,11 @@
     \whileboolexpr
       { test {\ifnumcomp{\value{authnum}}{<}{\theauthcount}} }%
       {\stepcounter{authnum}%
-		\ifnumcomp{\csuse{iac@iscorrespondingauthor\theauthnum}}{=}{1}{
+    \ifnumcomp{\csuse{iac@iscorrespondingauthor\theauthnum}}{=}{1}{
       * Corresponding author
       \setcounter{authnum}{99}}{}\par% % exit the loop by invalidating the bool condition
-		%\vskip 1.5ex%
-	  }
+    %\vskip 1.5ex%
+    }
 %
   \begin{center}
       \textbf{Abstract}
@@ -164,7 +163,7 @@
 \fancyhf{}
 
 % Header
-\chead{\footnotesize International Astronautical Congress, {\iac@location}, {\iac@date}.\\ \iac@makecopyright}
+\chead{\footnotesize \nth{\iac@conference} International Astronautical Congress (IAC {\iac@paperyear}), {\iac@location}, {\iac@date}.\\ \iac@makecopyright}
 
 % Footer
 \setlength{\footskip}{40pt}
